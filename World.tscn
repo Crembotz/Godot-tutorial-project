@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/Idle0.png" type="Texture" id=2]
@@ -9,9 +9,10 @@
 [ext_resource path="res://Sprites/Player/Run4.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Player/Run7.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Player/Jump0.png" type="Texture" id=9]
-[ext_resource path="res://JungleDirtTileSet.tres" type="TileSet" id=10]
+[ext_resource path="res://Sprites/Player/Jump3.png" type="Texture" id=10]
+[ext_resource path="res://JungleDirtTileSet.tres" type="TileSet" id=11]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -27,34 +28,36 @@ animations = [ {
 "loop": true,
 "name": "Jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 28 )
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 16.0
+height = 25.0
 
 [node name="World" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 64, 96 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="AnimatedSprite" parent="Player"]
 position = Vector2( 32, 32 )
-frames = SubResource( 2 )
-animation = "Run"
-frame = 1
+frames = SubResource( 1 )
+animation = "Idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2( 32, 36 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 one_way_collision_margin = 0.0
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource( 10 )
+tile_set = ExtResource( 11 )
 cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 327693, 0, 0, 327694, 1, 0, 327695, 1, 0, 327696, 1, 0, 327697, 1, 0, 327698, 2, 0, 393224, 0, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 2, 0, 393229, 3, 0, 393230, 4, 0, 393231, 4, 0, 393232, 4, 0, 393233, 4, 0, 393234, 5, 0, 458754, 0, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 2, 0, 458760, 3, 0, 458761, 4, 0, 458762, 4, 0, 458763, 4, 0, 458764, 5, 0, 458765, 3, 0, 458766, 4, 0, 458767, 4, 0, 458768, 4, 0, 458769, 4, 0, 458770, 5, 0, 524290, 3, 0, 524291, 4, 0, 524292, 4, 0, 524293, 4, 0, 524294, 4, 0, 524295, 5, 0, 524296, 3, 0, 524297, 4, 0, 524298, 4, 0, 524299, 4, 0, 524300, 5, 0, 524301, 3, 0, 524302, 4, 0, 524303, 4, 0, 524304, 4, 0, 524305, 4, 0, 524306, 5, 0, 589826, 3, 0, 589827, 4, 0, 589828, 4, 0, 589829, 4, 0, 589830, 4, 0, 589831, 5, 0, 589832, 3, 0, 589833, 4, 0, 589834, 4, 0, 589835, 4, 0, 589836, 5, 0, 589837, 3, 0, 589838, 4, 0, 589839, 4, 0, 589840, 4, 0, 589841, 4, 0, 589842, 5, 0, 655362, 6, 0, 655363, 7, 0, 655364, 7, 0, 655365, 7, 0, 655366, 7, 0, 655367, 8, 0, 655368, 6, 0, 655369, 7, 0, 655370, 7, 0, 655371, 7, 0, 655372, 8, 0, 655373, 6, 0, 655374, 7, 0, 655375, 7, 0, 655376, 7, 0, 655377, 7, 0, 655378, 8, 0 )
