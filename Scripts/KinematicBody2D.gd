@@ -12,7 +12,7 @@ var maxHorizontalSpeed = 120
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var friction = false
-	motion.y+=GRAVITY	
+	motion.y+=GRAVITY
 	if Input.is_action_pressed("ui_right"):
 		motion.x = min(motion.x+ACCELERATION,maxHorizontalSpeed)
 		$Sprite.flip_h = false
